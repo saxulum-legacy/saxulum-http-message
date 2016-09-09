@@ -1,0 +1,27 @@
+{
+    "name": "saxulum/saxulum-http-message",
+    "description": "Saxulum Http Message",
+    "keywords": ["saxulum", "http", "http-message", "psr"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dominik Zogg",
+            "email": "dominik.zogg@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "~7.0",
+        "psr/http-message": "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.0"
+    },
+    "autoload": {
+        "psr-4": { "Saxulum\\HttpMessage\\": "src/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
