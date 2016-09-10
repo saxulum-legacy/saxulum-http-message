@@ -12,8 +12,9 @@ class UriTest extends TestCase
 {
     /**
      * @dataProvider getCreateProvider
+     *
      * @param string $uri
-     * @param array $getters
+     * @param array  $getters
      */
     public function testCreate(string $uri, array $getters)
     {
@@ -40,8 +41,8 @@ class UriTest extends TestCase
                     'getPath' => '/path',
                     'getQuery' => 'arg=value',
                     'getFragment' => 'anchor',
-                    '__toString' => 'http://user:password@hostname:8080/path?arg=value#anchor'
-                ]
+                    '__toString' => 'http://user:password@hostname:8080/path?arg=value#anchor',
+                ],
             ],
             [
                 'uri' => 'http://user@hostname:8080/path?arg=value#anchor',
@@ -54,8 +55,8 @@ class UriTest extends TestCase
                     'getPath' => '/path',
                     'getQuery' => 'arg=value',
                     'getFragment' => 'anchor',
-                    '__toString' => 'http://user@hostname:8080/path?arg=value#anchor'
-                ]
+                    '__toString' => 'http://user@hostname:8080/path?arg=value#anchor',
+                ],
             ],
             [
                 'uri' => 'http://hostname:8080/path?arg=value#anchor',
@@ -68,8 +69,8 @@ class UriTest extends TestCase
                     'getPath' => '/path',
                     'getQuery' => 'arg=value',
                     'getFragment' => 'anchor',
-                    '__toString' => 'http://hostname:8080/path?arg=value#anchor'
-                ]
+                    '__toString' => 'http://hostname:8080/path?arg=value#anchor',
+                ],
             ],
             [
                 'uri' => 'http://hostname:80/path?arg=value#anchor',
@@ -82,8 +83,8 @@ class UriTest extends TestCase
                     'getPath' => '/path',
                     'getQuery' => 'arg=value',
                     'getFragment' => 'anchor',
-                    '__toString' => 'http://hostname/path?arg=value#anchor'
-                ]
+                    '__toString' => 'http://hostname/path?arg=value#anchor',
+                ],
             ],
             [
                 'uri' => 'https://hostname:443/path?arg=value#anchor',
@@ -96,8 +97,8 @@ class UriTest extends TestCase
                     'getPath' => '/path',
                     'getQuery' => 'arg=value',
                     'getFragment' => 'anchor',
-                    '__toString' => 'https://hostname/path?arg=value#anchor'
-                ]
+                    '__toString' => 'https://hostname/path?arg=value#anchor',
+                ],
             ],
             [
                 'uri' => '//hostname/path?arg=value#anchor',
@@ -110,8 +111,8 @@ class UriTest extends TestCase
                     'getPath' => '/path',
                     'getQuery' => 'arg=value',
                     'getFragment' => 'anchor',
-                    '__toString' => '//hostname/path?arg=value#anchor'
-                ]
+                    '__toString' => '//hostname/path?arg=value#anchor',
+                ],
             ],
             [
                 'uri' => 'http://hostname:443',
@@ -124,8 +125,8 @@ class UriTest extends TestCase
                     'getPath' => '',
                     'getQuery' => '',
                     'getFragment' => '',
-                    '__toString' => 'http://hostname:443'
-                ]
+                    '__toString' => 'http://hostname:443',
+                ],
             ],
             [
                 'uri' => 'otherschema://hostname:443',
@@ -138,8 +139,8 @@ class UriTest extends TestCase
                     'getPath' => '',
                     'getQuery' => '',
                     'getFragment' => '',
-                    '__toString' => 'otherschema://hostname:443'
-                ]
+                    '__toString' => 'otherschema://hostname:443',
+                ],
             ],
             [
                 'uri' => '/path?arg=value#anchor',
@@ -152,8 +153,8 @@ class UriTest extends TestCase
                     'getPath' => '/path',
                     'getQuery' => 'arg=value',
                     'getFragment' => 'anchor',
-                    '__toString' => '/path?arg=value#anchor'
-                ]
+                    '__toString' => '/path?arg=value#anchor',
+                ],
             ],
         ];
     }
@@ -168,7 +169,7 @@ class UriTest extends TestCase
 
     public function testWithScheme()
     {
-        $uri = (new Uri)->withScheme('HTTPS');
+        $uri = (new Uri())->withScheme('HTTPS');
 
         self::assertSame('https', $uri->getScheme());
         self::assertSame('', $uri->getAuthority());
@@ -184,7 +185,7 @@ class UriTest extends TestCase
 
     public function testWithUserInfo()
     {
-        $uri = (new Uri)->withUserInfo('user', 'password');
+        $uri = (new Uri())->withUserInfo('user', 'password');
 
         self::assertSame('', $uri->getScheme());
         self::assertSame('', $uri->getAuthority());
@@ -200,7 +201,7 @@ class UriTest extends TestCase
 
     public function testWithHost()
     {
-        $uri = (new Uri)->withHost('HOSTNAME');
+        $uri = (new Uri())->withHost('HOSTNAME');
 
         self::assertSame('', $uri->getScheme());
         self::assertSame('hostname', $uri->getAuthority());
@@ -216,7 +217,7 @@ class UriTest extends TestCase
 
     public function testWithPort()
     {
-        $uri = (new Uri)->withPort(8080);
+        $uri = (new Uri())->withPort(8080);
 
         self::assertSame('', $uri->getScheme());
         self::assertSame('', $uri->getAuthority());
@@ -232,7 +233,7 @@ class UriTest extends TestCase
 
     public function testWithPath()
     {
-        $uri = (new Uri)->withPath('/path');
+        $uri = (new Uri())->withPath('/path');
 
         self::assertSame('', $uri->getScheme());
         self::assertSame('', $uri->getAuthority());
@@ -248,7 +249,7 @@ class UriTest extends TestCase
 
     public function testWithQuery()
     {
-        $uri = (new Uri)->withQuery('arg=value');
+        $uri = (new Uri())->withQuery('arg=value');
 
         self::assertSame('', $uri->getScheme());
         self::assertSame('', $uri->getAuthority());
@@ -264,7 +265,7 @@ class UriTest extends TestCase
 
     public function testWithFragment()
     {
-        $uri = (new Uri)->withFragment('anchor');
+        $uri = (new Uri())->withFragment('anchor');
 
         self::assertSame('', $uri->getScheme());
         self::assertSame('', $uri->getAuthority());
@@ -280,7 +281,7 @@ class UriTest extends TestCase
 
     public function testWithAllWithMethod()
     {
-        $uri = (new Uri)
+        $uri = (new Uri())
             ->withScheme('https')
             ->withUserInfo('user', 'password')
             ->withHost('hostname')
