@@ -18,7 +18,7 @@ abstract class AbstractMessage implements MessageInterface
     /**
      * @var string[]|array
      */
-    protected $headers = [];
+    protected $headers;
 
     /**
      * @var StreamInterface
@@ -36,7 +36,7 @@ abstract class AbstractMessage implements MessageInterface
     /**
      * {@inheritdoc}
      */
-    public function withProtocolVersion($version): static
+    public function withProtocolVersion($version): self
     {
         return $this->with(['protocolVersion' => $version]);
     }
@@ -46,7 +46,7 @@ abstract class AbstractMessage implements MessageInterface
      */
     public function getHeaders(): array
     {
-         return $this->headers;
+        return $this->headers;
     }
 
     /**
@@ -74,13 +74,13 @@ abstract class AbstractMessage implements MessageInterface
      */
     public function getHeaderLine($name): string
     {
-         return implode(',', $this->getHeader($name));
+        return implode(',', $this->getHeader($name));
     }
 
     /**
      * {@inheritdoc}
      */
-    public function withHeader($name, $value): static
+    public function withHeader($name, $value): self
     {
         $originalHeaderName = $this->getOriginalHeaderName($name) ?? $name;
 
@@ -121,7 +121,7 @@ abstract class AbstractMessage implements MessageInterface
      */
     public function getBody(): StreamInterface
     {
-         return $this->body;
+        return $this->body;
     }
 
     /**
@@ -134,12 +134,14 @@ abstract class AbstractMessage implements MessageInterface
 
     /**
      * @param array $parameters
+     *
      * @return AbstractMessage
      */
-    abstract protected function with(array $parameters): static;
+    abstract protected function with(array $parameters);
 
     /**
      * @param string $name
+     *
      * @return string|null
      */
     private function getOriginalHeaderName(string $name)
@@ -160,7 +162,8 @@ abstract class AbstractMessage implements MessageInterface
 
     /**
      * @param array|string $value
-     * @param array $originalValue
+     * @param array        $originalValue
+     *
      * @return array
      */
     private function prepareHeader($value, array $originalValue = []): array
