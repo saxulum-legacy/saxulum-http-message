@@ -380,7 +380,9 @@ final class Uri implements UriInterface
             $uri .= '//'.$authority;
         }
 
-        $uri .= $this->getPathForUri('' !== $authority);
+        if ('' !== $path = $this->getPath()) {
+            $uri .= $this->getPathForUri($authority, $path);
+        }
 
         if ('' !== $query = $this->getQuery()) {
             $uri .= '?'.$query;
@@ -410,20 +412,37 @@ final class Uri implements UriInterface
     }
 
     /**
-     * @param bool $hasAuthority
+     * @param string $authority
+     * @param string $path
      *
      * @return string
      */
-    private function getPathForUri(bool $hasAuthority): string
+    private function getPathForUri(string $authority, string $path): string
     {
-        if ('' === $path = $this->getPath()) {
-            return '';
+        if ('' !== $authority) {
+            return $this->getPathForUriWithAuthority($path);
         }
 
-        if ($hasAuthority) {
-            return '/' === $path[0] ? $path : '/'.$path;
-        }
+        return $this->getPathForUriWithoutAuthority($path);
+    }
 
+    /**
+     * @param string $path
+     *
+     * @return string
+     */
+    private function getPathForUriWithAuthority(string $path)
+    {
+        return '/' === $path[0] ? $path : '/'.$path;
+    }
+
+    /**
+     * @param string $path
+     *
+     * @return string
+     */
+    private function getPathForUriWithoutAuthority(string $path)
+    {
         $pathLength = strlen($path);
         for ($i = 0; $i < $pathLength; ++$i) {
             if ('/' !== $path[$i]) {
