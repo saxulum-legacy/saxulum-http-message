@@ -88,14 +88,13 @@ final class Uri implements UriInterface
     }
 
     /**
-     * @param string            $uri
-     * @param UriInterface|null $previous
+     * @param string $uri
      *
      * @return UriInterface
      *
      * @throws \InvalidArgumentException
      */
-    public static function create(string $uri, UriInterface $previous = null)
+    public static function create(string $uri)
     {
         $uriParts = parse_url($uri);
         if (false === $uriParts) {
@@ -110,8 +109,7 @@ final class Uri implements UriInterface
             $uriParts['pass'] ?? null,
             $uriParts['path'] ?? null,
             $uriParts['query'] ?? null,
-            $uriParts['fragment'] ?? null,
-            $previous
+            $uriParts['fragment'] ?? null
         );
     }
 
