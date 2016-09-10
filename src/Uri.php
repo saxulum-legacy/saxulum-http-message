@@ -17,7 +17,7 @@ final class Uri implements UriInterface
     private $host;
 
     /**
-     * @var string|null
+     * @var int|null
      */
     private $port;
 
