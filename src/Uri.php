@@ -52,7 +52,7 @@ final class Uri implements UriInterface
     /**
      * @var UriInterface|null
      */
-    private $previous;
+    private $__previous;
 
     /**
      * @param string|null       $scheme
@@ -84,7 +84,7 @@ final class Uri implements UriInterface
         $this->path = $path;
         $this->query = $query;
         $this->fragment = $fragment;
-        $this->previous = $previous;
+        $this->__previous = $previous;
     }
 
     /**
@@ -207,14 +207,6 @@ final class Uri implements UriInterface
     public function getFragment(): string
     {
         return (string) $this->fragment;
-    }
-
-    /**
-     * @return UriInterface|null
-     */
-    public function getPrevious()
-    {
-        return $this->previous;
     }
 
     /**

@@ -168,142 +168,119 @@ class UriTest extends TestCase
 
     public function testWithScheme()
     {
-        $uri = new Uri;
-        $newUri = $uri->withScheme('HTTPS');
+        $uri = (new Uri)->withScheme('HTTPS');
 
-        self::assertSame('https', $newUri->getScheme());
-        self::assertSame('', $newUri->getAuthority());
-        self::assertSame('', $newUri->getUserInfo());
-        self::assertSame('', $newUri->getHost());
-        self::assertSame(null, $newUri->getPort());
-        self::assertSame('', $newUri->getPath());
-        self::assertSame('', $newUri->getQuery());
-        self::assertSame('', $newUri->getFragment());
+        self::assertSame('https', $uri->getScheme());
+        self::assertSame('', $uri->getAuthority());
+        self::assertSame('', $uri->getUserInfo());
+        self::assertSame('', $uri->getHost());
+        self::assertSame(null, $uri->getPort());
+        self::assertSame('', $uri->getPath());
+        self::assertSame('', $uri->getQuery());
+        self::assertSame('', $uri->getFragment());
 
-        self::assertSame('https:', (string) $newUri);
-
-        self::assertSame($uri, $newUri->getPrevious());
+        self::assertSame('https:', (string) $uri);
     }
 
     public function testWithUserInfo()
     {
-        $uri = new Uri;
-        $newUri = $uri->withUserInfo('user', 'password');
+        $uri = (new Uri)->withUserInfo('user', 'password');
 
-        self::assertSame('', $newUri->getScheme());
-        self::assertSame('', $newUri->getAuthority());
-        self::assertSame('user:password', $newUri->getUserInfo());
-        self::assertSame('', $newUri->getHost());
-        self::assertSame(null, $newUri->getPort());
-        self::assertSame('', $newUri->getPath());
-        self::assertSame('', $newUri->getQuery());
-        self::assertSame('', $newUri->getFragment());
+        self::assertSame('', $uri->getScheme());
+        self::assertSame('', $uri->getAuthority());
+        self::assertSame('user:password', $uri->getUserInfo());
+        self::assertSame('', $uri->getHost());
+        self::assertSame(null, $uri->getPort());
+        self::assertSame('', $uri->getPath());
+        self::assertSame('', $uri->getQuery());
+        self::assertSame('', $uri->getFragment());
 
-        self::assertSame('', (string) $newUri);
-
-        self::assertSame($uri, $newUri->getPrevious());
+        self::assertSame('', (string) $uri);
     }
 
     public function testWithHost()
     {
-        $uri = new Uri;
-        $newUri = $uri->withHost('HOSTNAME');
+        $uri = (new Uri)->withHost('HOSTNAME');
 
-        self::assertSame('', $newUri->getScheme());
-        self::assertSame('hostname', $newUri->getAuthority());
-        self::assertSame('', $newUri->getUserInfo());
-        self::assertSame('hostname', $newUri->getHost());
-        self::assertSame(null, $newUri->getPort());
-        self::assertSame('', $newUri->getPath());
-        self::assertSame('', $newUri->getQuery());
-        self::assertSame('', $newUri->getFragment());
+        self::assertSame('', $uri->getScheme());
+        self::assertSame('hostname', $uri->getAuthority());
+        self::assertSame('', $uri->getUserInfo());
+        self::assertSame('hostname', $uri->getHost());
+        self::assertSame(null, $uri->getPort());
+        self::assertSame('', $uri->getPath());
+        self::assertSame('', $uri->getQuery());
+        self::assertSame('', $uri->getFragment());
 
-        self::assertSame('//hostname', (string) $newUri);
-
-        self::assertSame($uri, $newUri->getPrevious());
+        self::assertSame('//hostname', (string) $uri);
     }
 
     public function testWithPort()
     {
-        $uri = new Uri;
-        $newUri = $uri->withPort(8080);
+        $uri = (new Uri)->withPort(8080);
 
-        self::assertSame('', $newUri->getScheme());
-        self::assertSame('', $newUri->getAuthority());
-        self::assertSame('', $newUri->getUserInfo());
-        self::assertSame('', $newUri->getHost());
-        self::assertSame(8080, $newUri->getPort());
-        self::assertSame('', $newUri->getPath());
-        self::assertSame('', $newUri->getQuery());
-        self::assertSame('', $newUri->getFragment());
+        self::assertSame('', $uri->getScheme());
+        self::assertSame('', $uri->getAuthority());
+        self::assertSame('', $uri->getUserInfo());
+        self::assertSame('', $uri->getHost());
+        self::assertSame(8080, $uri->getPort());
+        self::assertSame('', $uri->getPath());
+        self::assertSame('', $uri->getQuery());
+        self::assertSame('', $uri->getFragment());
 
-        self::assertSame('', (string) $newUri);
-
-        self::assertSame($uri, $newUri->getPrevious());
+        self::assertSame('', (string) $uri);
     }
 
     public function testWithPath()
     {
-        $uri = new Uri;
-        $newUri = $uri->withPath('/path');
+        $uri = (new Uri)->withPath('/path');
 
-        self::assertSame('', $newUri->getScheme());
-        self::assertSame('', $newUri->getAuthority());
-        self::assertSame('', $newUri->getUserInfo());
-        self::assertSame('', $newUri->getHost());
-        self::assertSame(null, $newUri->getPort());
-        self::assertSame('/path', $newUri->getPath());
-        self::assertSame('', $newUri->getQuery());
-        self::assertSame('', $newUri->getFragment());
+        self::assertSame('', $uri->getScheme());
+        self::assertSame('', $uri->getAuthority());
+        self::assertSame('', $uri->getUserInfo());
+        self::assertSame('', $uri->getHost());
+        self::assertSame(null, $uri->getPort());
+        self::assertSame('/path', $uri->getPath());
+        self::assertSame('', $uri->getQuery());
+        self::assertSame('', $uri->getFragment());
 
-        self::assertSame('/path', (string) $newUri);
-
-        self::assertSame($uri, $newUri->getPrevious());
+        self::assertSame('/path', (string) $uri);
     }
 
     public function testWithQuery()
     {
-        $uri = new Uri;
-        $newUri = $uri->withQuery('arg=value');
+        $uri = (new Uri)->withQuery('arg=value');
 
-        self::assertSame('', $newUri->getScheme());
-        self::assertSame('', $newUri->getAuthority());
-        self::assertSame('', $newUri->getUserInfo());
-        self::assertSame('', $newUri->getHost());
-        self::assertSame(null, $newUri->getPort());
-        self::assertSame('', $newUri->getPath());
-        self::assertSame('arg=value', $newUri->getQuery());
-        self::assertSame('', $newUri->getFragment());
+        self::assertSame('', $uri->getScheme());
+        self::assertSame('', $uri->getAuthority());
+        self::assertSame('', $uri->getUserInfo());
+        self::assertSame('', $uri->getHost());
+        self::assertSame(null, $uri->getPort());
+        self::assertSame('', $uri->getPath());
+        self::assertSame('arg=value', $uri->getQuery());
+        self::assertSame('', $uri->getFragment());
 
-        self::assertSame('?arg=value', (string) $newUri);
-
-        self::assertSame($uri, $newUri->getPrevious());
+        self::assertSame('?arg=value', (string) $uri);
     }
 
     public function testWithFragment()
     {
-        $uri = new Uri;
-        $newUri = $uri->withFragment('anchor');
+        $uri = (new Uri)->withFragment('anchor');
 
-        self::assertSame('', $newUri->getScheme());
-        self::assertSame('', $newUri->getAuthority());
-        self::assertSame('', $newUri->getUserInfo());
-        self::assertSame('', $newUri->getHost());
-        self::assertSame(null, $newUri->getPort());
-        self::assertSame('', $newUri->getPath());
-        self::assertSame('', $newUri->getQuery());
-        self::assertSame('anchor', $newUri->getFragment());
+        self::assertSame('', $uri->getScheme());
+        self::assertSame('', $uri->getAuthority());
+        self::assertSame('', $uri->getUserInfo());
+        self::assertSame('', $uri->getHost());
+        self::assertSame(null, $uri->getPort());
+        self::assertSame('', $uri->getPath());
+        self::assertSame('', $uri->getQuery());
+        self::assertSame('anchor', $uri->getFragment());
 
-        self::assertSame('#anchor', (string) $newUri);
-
-        self::assertSame($uri, $newUri->getPrevious());
+        self::assertSame('#anchor', (string) $uri);
     }
 
     public function testWithAllWithMethod()
     {
-        $uri = new Uri;
-
-        $newUri = $uri
+        $uri = (new Uri)
             ->withScheme('https')
             ->withUserInfo('user', 'password')
             ->withHost('hostname')
@@ -313,15 +290,15 @@ class UriTest extends TestCase
             ->withFragment('anchor')
         ;
 
-        self::assertSame('https', $newUri->getScheme());
-        self::assertSame('user:password@hostname:8080', $newUri->getAuthority());
-        self::assertSame('user:password', $newUri->getUserInfo());
-        self::assertSame('hostname', $newUri->getHost());
-        self::assertSame(8080, $newUri->getPort());
-        self::assertSame('path', $newUri->getPath());
-        self::assertSame('arg=value', $newUri->getQuery());
-        self::assertSame('anchor', $newUri->getFragment());
+        self::assertSame('https', $uri->getScheme());
+        self::assertSame('user:password@hostname:8080', $uri->getAuthority());
+        self::assertSame('user:password', $uri->getUserInfo());
+        self::assertSame('hostname', $uri->getHost());
+        self::assertSame(8080, $uri->getPort());
+        self::assertSame('path', $uri->getPath());
+        self::assertSame('arg=value', $uri->getQuery());
+        self::assertSame('anchor', $uri->getFragment());
 
-        self::assertSame('https://user:password@hostname:8080/path?arg=value#anchor', (string) $newUri);
+        self::assertSame('https://user:password@hostname:8080/path?arg=value#anchor', (string) $uri);
     }
 }
