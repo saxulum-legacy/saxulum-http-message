@@ -120,11 +120,7 @@ final class Uri implements UriInterface
      */
     public function getScheme(): string
     {
-        if (null === $this->scheme) {
-            return '';
-        }
-
-        return strtolower($this->scheme);
+        return strtolower((string) $this->scheme);
     }
 
     /**
@@ -172,11 +168,7 @@ final class Uri implements UriInterface
      */
     public function getHost(): string
     {
-        if (null === $this->host) {
-            return '';
-        }
-
-        return strtolower($this->host);
+        return strtolower((string) $this->host);
     }
 
     /**
@@ -200,11 +192,7 @@ final class Uri implements UriInterface
      */
     public function getPath(): string
     {
-        if (null === $this->path) {
-            return '';
-        }
-
-        return $this->path;
+        return (string) $this->path;
     }
 
     /**
@@ -212,11 +200,7 @@ final class Uri implements UriInterface
      */
     public function getQuery(): string
     {
-        if (null === $this->query) {
-            return '';
-        }
-
-        return $this->query;
+        return (string) $this->query;
     }
 
     /**
@@ -224,11 +208,7 @@ final class Uri implements UriInterface
      */
     public function getFragment(): string
     {
-        if (null === $this->fragment) {
-            return '';
-        }
-
-        return $this->fragment;
+        return (string) $this->fragment;
     }
 
     /**
