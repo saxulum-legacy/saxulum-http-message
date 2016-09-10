@@ -63,7 +63,7 @@ final class Uri implements UriInterface
      * @param string|null       $path
      * @param string|null       $query
      * @param string|null       $fragment
-     * @param UriInterface|null $previous
+     * @param UriInterface|null $__previous
      */
     public function __construct(
         string $scheme = null,
@@ -74,7 +74,7 @@ final class Uri implements UriInterface
         string $path = null,
         string $query = null,
         string $fragment = null,
-        UriInterface $previous = null
+        UriInterface $__previous = null
     ) {
         $this->scheme = $scheme;
         $this->host = $host;
@@ -84,7 +84,7 @@ final class Uri implements UriInterface
         $this->path = $path;
         $this->query = $query;
         $this->fragment = $fragment;
-        $this->__previous = $previous;
+        $this->__previous = $__previous;
     }
 
     /**
