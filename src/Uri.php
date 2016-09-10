@@ -224,17 +224,7 @@ final class Uri implements UriInterface
      */
     public function withScheme($scheme): self
     {
-        return new self(
-            $scheme ?? null,
-            $this->host,
-            $this->port,
-            $this->user,
-            $this->password,
-            $this->path,
-            $this->query,
-            $this->fragment,
-            $this
-        );
+        return $this->with(['scheme' => $scheme]);
     }
 
     /**
@@ -242,17 +232,7 @@ final class Uri implements UriInterface
      */
     public function withUserInfo($user, $password = null): self
     {
-        return new self(
-            $this->scheme,
-            $this->host,
-            $this->port,
-            $user ?? null,
-            $password ?? null,
-            $this->path,
-            $this->query,
-            $this->fragment,
-            $this
-        );
+        return $this->with(['user' => $user, 'password' => $password]);
     }
 
     /**
@@ -260,17 +240,7 @@ final class Uri implements UriInterface
      */
     public function withHost($host): self
     {
-        return new self(
-            $this->scheme,
-            $host ?? null,
-            $this->port,
-            $this->user,
-            $this->password,
-            $this->path,
-            $this->query,
-            $this->fragment,
-            $this
-        );
+        return $this->with(['host' => $host]);
     }
 
     /**
@@ -278,17 +248,7 @@ final class Uri implements UriInterface
      */
     public function withPort($port): self
     {
-        return new self(
-            $this->scheme,
-            $this->host,
-            $port ?? null,
-            $this->user,
-            $this->password,
-            $this->path,
-            $this->query,
-            $this->fragment,
-            $this
-        );
+        return $this->with(['port' => $port]);
     }
 
     /**
@@ -296,17 +256,7 @@ final class Uri implements UriInterface
      */
     public function withPath($path): self
     {
-        return new self(
-            $this->scheme,
-            $this->host,
-            $this->port,
-            $this->user,
-            $this->password,
-            $path ?? null,
-            $this->query,
-            $this->fragment,
-            $this
-        );
+        return $this->with(['path' => $path]);
     }
 
     /**
@@ -314,17 +264,7 @@ final class Uri implements UriInterface
      */
     public function withQuery($query): self
     {
-        return new self(
-            $this->scheme,
-            $this->host,
-            $this->port,
-            $this->user,
-            $this->password,
-            $this->path,
-            $query ?? null,
-            $this->fragment,
-            $this
-        );
+        return $this->with(['query' => $query]);
     }
 
     /**
@@ -332,17 +272,7 @@ final class Uri implements UriInterface
      */
     public function withFragment($fragment): self
     {
-        return new self(
-            $this->scheme,
-            $this->host,
-            $this->port,
-            $this->user,
-            $this->password,
-            $this->path,
-            $this->query,
-            $fragment ?? null,
-            $this
-        );
+        return $this->with(['fragment' => $fragment]);
     }
 
     /**
@@ -431,5 +361,29 @@ final class Uri implements UriInterface
         }
 
         return 0 === $i ? $path : '/'.substr($path, $i);
+    }
+
+    /**
+     * @param array $arguments
+     *
+     * @return Uri
+     */
+    public function with(array $arguments): self
+    {
+        $defaultArguments = [
+            'scheme' => $this->scheme,
+            'host' => $this->host,
+            'port' => $this->port,
+            'user' => $this->user,
+            'password' => $this->password,
+            'path' => $this->path,
+            'query' => $this->query,
+            'fragment' => $this->fragment,
+            'previous' => $this,
+        ];
+
+        $arguments = array_replace($defaultArguments, $arguments);
+
+        return new self(...array_merge(array_values($arguments), [$this]));
     }
 }
