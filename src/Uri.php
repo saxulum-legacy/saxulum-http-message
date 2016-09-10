@@ -354,13 +354,13 @@ final class Uri implements UriInterface
     }
 
     /**
-     * @param array $arguments
+     * @param array $parameters
      *
      * @return Uri
      */
-    public function with(array $arguments): self
+    public function with(array $parameters): self
     {
-        $defaultArguments = [
+        $defaults = [
             'scheme' => $this->scheme,
             'host' => $this->host,
             'port' => $this->port,
@@ -371,8 +371,8 @@ final class Uri implements UriInterface
             'fragment' => $this->fragment,
         ];
 
-        $arguments = array_replace($defaultArguments, $arguments, ['previous' => $this]);
+        $arguments = array_values(array_replace($defaults, $parameters, ['__previous' => $this]));
 
-        return new self(...array_values($arguments));
+        return new self(...$arguments);
     }
 }
