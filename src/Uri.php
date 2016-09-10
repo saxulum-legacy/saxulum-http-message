@@ -358,7 +358,7 @@ final class Uri implements UriInterface
      *
      * @return Uri
      */
-    public function with(array $parameters): self
+    private function with(array $parameters): self
     {
         $defaults = [
             'scheme' => $this->scheme,
