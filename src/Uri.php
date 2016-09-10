@@ -377,11 +377,10 @@ final class Uri implements UriInterface
             'path' => $this->path,
             'query' => $this->query,
             'fragment' => $this->fragment,
-            'previous' => $this,
         ];
 
-        $arguments = array_replace($defaultArguments, $arguments);
+        $arguments = array_replace($defaultArguments, $arguments, ['previous' => $this]);
 
-        return new self(...array_merge(array_values($arguments), [$this]));
+        return new self(...array_values($arguments));
     }
 }
