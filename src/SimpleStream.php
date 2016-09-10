@@ -76,11 +76,19 @@ final class SimpleStream implements StreamInterface
     public function seek($offset, $whence = SEEK_SET)
     {
         if (SEEK_SET === $whence) {
-            $this->pointer = $offset;
+            $newPointerPosition = $offset;
         } elseif (SEEK_CUR === $whence) {
-            $this->pointer += $offset;
+            $newPointerPosition = $this->pointer + $offset;
         } elseif (SEEK_END === $whence) {
-            $this->pointer = $this->getSize() - 1 + $offset;
+            $newPointerPosition = $this->getSize() - 1 + $offset;
+        } else {
+            throw new \RuntimeException(sprintf('Unsupported whence %s', $whence));
+        }
+
+        if ($newPointerPosition > $this->getSize() - 1) {
+            throw new \RuntimeException(
+                sprintf('Invalid offset %d, max allowed %d', $newPointerPosition, $this->getSize() - 1)
+            );
         }
     }
 
@@ -119,7 +127,7 @@ final class SimpleStream implements StreamInterface
      */
     public function isReadable(): bool
     {
-        return true;
+        return !$this->eof();
     }
 
     /**
@@ -129,7 +137,10 @@ final class SimpleStream implements StreamInterface
     {
         $read = '';
         for ($i = 0; $i < $length; ++$i) {
-            $read .= $this->stream[$this->pointer + $i] ?? '';
+            if (isset($this->stream[$this->pointer])) {
+                $read .= $this->stream[$this->pointer];
+                ++$this->pointer;
+            }
         }
 
         return $read;
